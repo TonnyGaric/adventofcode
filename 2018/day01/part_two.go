@@ -25,12 +25,16 @@ func main() {
 	// Store all reached frequencies in this slice
 	var reachedFrequencies []int
 
+	// Keep track if we have not found the first
+	// frequency our device reaches twice
+	var notFound = true
+
 	// Initial frequency is zero
 	var frequency = 0
 
 	// Keep iterating as long as we have not found the
 	// first frequency our device reaches twice.
-	for {
+	for notFound {
 		// Open file "input.txt" for reading
 		inputFile, err := os.Open("input.txt")
 
@@ -81,6 +85,7 @@ func main() {
 			// Check if this frequency already was reached once
 			if contains(reachedFrequencies, frequency) {
 				fmt.Println("The first frequency our device reaches twice is", frequency)
+				notFound = false
 				break
 			}
 
