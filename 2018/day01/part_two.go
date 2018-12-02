@@ -60,24 +60,20 @@ func main() {
 			// Line from inputFile
 			var line = scanner.Text()
 
-			// The first character of each line should be a
-			// '+' or '-'. The other characters should be a
-			// number. So we convert all charachters,
-			// except the first one, to an int.
-			i, err := strconv.Atoi(line[1:len(line)])
+			// Use Atoi to convert line (string) to int.
+			//
+			// Note that Atoi takes the characters "+"
+			// and "-" into account when converting
+			// to int.
+			//
+			// See also: https://golang.org/pkg/strconv/#hdr-Numeric_Conversions
+			i, err := strconv.Atoi(line)
 
 			if err != nil {
 				log.Fatal(err)
 			}
 
-			// Determine what the first character is, so we
-			// know if we must add or substract from
-			// frequency.
-			if line[0] == '+' {
-				frequency = frequency + i
-			} else if line[0] == '-' {
-				frequency = frequency - i
-			}
+			frequency = frequency + i
 
 			// Print the changes that occur
 			fmt.Println("Current frequency", currentFrequency, "change of", line+"; resulting frequency", frequency)
